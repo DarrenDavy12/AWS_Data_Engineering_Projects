@@ -1,0 +1,52 @@
+### Step 4: Stream Processing with Kinesis & Lambda
+
+Simulate real-time user events, stream them into Amazon Kinesis, transform them using Lambda, and store the output in S3.
+
+
+In the kinesis homepage, I created a data stream with a capacity of one provisioned shard, and then clicked create data stream. 
+
+<br> 
+
+![Image](https://github.com/user-attachments/assets/66b055b9-0692-413a-a9dd-7652803816d1)
+
+
+<br>
+
+
+![Image](https://github.com/user-attachments/assets/ce8a9c85-6ccc-4458-acb0-b77193436528)
+
+
+<br>
+
+I used a python script to create the events that will be happening in the stream process. I named it 'kinesis_producer.py'
+
+
+![Image](https://github.com/user-attachments/assets/f2e2b536-d239-465f-9e8a-2637cc51ec8f)
+
+
+<br>
+
+### Step 3: Created a Lambda to Consume Stream 
+
+I went to the Lambda Console, navigated to the AWS Console onwards to Lambda, once done I clicked on “Create function”
+
+I chose Author from scratch with the function name being 'kinesis_consumer_lambda' and the Runtime being Python 3.11
+
+Permission I chose was "Create a new role with basic Lambda permissions" then clicked on "Create function".
+
+![Image](https://github.com/user-attachments/assets/0cf5f7c4-09eb-45a9-89a2-5f77090aeb23)
+
+
+<br>
+
+
+#### Step 4: Added Kinesis as a Trigger
+In the Lambda function page, I scrolled to "Function overview", clicked on “Add trigger" chose Kinesis,
+stream user-activity-stream (the stream you created), batch size was 100 (default),
+the starting position was "TRIM_HORIZON", clicked "Add". 
+
+<br>
+
+![Image](https://github.com/user-attachments/assets/799666a3-9806-4b15-81d3-1cb5d3bf6484)
+
+<br>
